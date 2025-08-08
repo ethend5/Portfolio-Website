@@ -8,6 +8,7 @@ import Experience from './components/Experience';
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ProjectDetails from './components/ProjectDetails';
+import ScrollToTop from './components/ScrollToTop';
 
 const HomePage = () => {
   return (
@@ -29,6 +30,7 @@ const HomePage = () => {
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/project/:id" element={<ProjectDetails />} />
