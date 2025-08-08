@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+/*----------------*\
+* Base
+\*----------------*/
+
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
+body {
+  @apply bg-zinc-900 text-zinc-50 h-[200vh]
+}
+
+
+
+
+/*----------------*\
+* Typography
+\*----------------*/
+
+
+
+
+.headline-1,
+.headline-2 {
+  @apply max-w-max;
+  background: -webkit-linear-gradient(0deg, #fafafa, #a1a1aa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+
+.headline-1 {
+  @apply text-5xl leading-tight font-semibold lg:text-[55px] lg:leading-[1.15]
+}
+
+
+
+
+.headline-2 {
+  @apply text-3xl lg:text-4xl lg:leading-tight font-semibold
+}
+
+
+
+
+.title-1 {
+  @apply text-[22px] font-normal
+}
+/*----------------*\
+* Utilities
+\*----------------*/
+
+
+
+
+.material-symbol-rounded {
+  @apply w-[1em] h-[1em] overflow-hidden;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+
+
+
+.container {
+  @apply px-4 mx-auto lg:px-8 xl:max-w-6xl;
+}
+
+
+
+
+.img-box{
+  @apply bg-zinc-700 overflow-hidden
+}
+
+
+
+
+.img-cover {
+  @apply w-full h-full object-cover
+}
+
+
+
+
+.section {
+  @apply pt-20 lg:pt-32
+}
+
+
+
+
+/*----------------*\
+* Component
+\*----------------*/
+
+
+
+
+/* Menu btn*/
+
+
+
+
+.menu-btn {
+  @apply w-10 h-10 grid place-items-center bg-zinc-50/10 rounded-xl ring-inset ring-1 ring-zinc-50/[0.02] backdrop-blur-2xl hover:bg-zinc-50/15 transition-[transform,background-color] active:scale-95;
+}
+
+
+
+
+/* Navbar*/
+.navbar {
+  @apply absolute top-full mt-2 right-0 min-w-40 p-2 bg-zinc-50/10 rounded-2xl ring-inset ring-1 ring-zinc-50/5 scale-90 isolate blur-sm opacity-0 invisible transition-[opacity,transform,filter] md:static md:flex md:items-center md:mt-0 md:opacity-100 md:blur-0 md:visible md:scale-100 md:backdrop-blur-2xl md:bg-transparent md:p-0 md:rounded-none md:ring-0
+}
+.navbar.active {
+  @apply opacity-100 scale-100 blur-0 visible
+}
+
+
+
+
+.nav-link {
+  @apply grid items-center h-9 px-4 text-sm font-medium tracking-wide text-zinc-50/50 hover:text-zinc-50 transition-colors
+}
+
+
+
+
+.nav-link.active {
+  @apply text-zinc-900 duration-500 relative z-10
+}
+
+
+
+
+/* Fixed active-box positioning for both mobile and desktop */
+.navbar .active-box {
+  @apply absolute h-9 bg-zinc-50 rounded-lg z-0 transition-[top,left,width,height,opacity] duration-500;
+  /* Mobile positioning - account for navbar padding */
+  top: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+}
+
+
+/* Desktop positioning adjustments */
+@media (min-width: 768px) {
+  .navbar .active-box {
+      /* Reset mobile positioning */
+      top: auto;
+      left: auto;
+      right: auto;
+      /* Desktop will be positioned via JavaScript */
+  }
+}
+
+
+/* Ensure Contact section shows active state properly */
+.nav-link[href="#contact"].active {
+  @apply text-zinc-50 bg-zinc-50/10 rounded-lg;
+}
+
+
+/* Hide active-box when contact is active on desktop */
+@media (min-width: 768px) {
+  .navbar:has(.nav-link[href="#contact"].active) .active-box {
+      @apply opacity-0;
+  }
+}
+
+
+
+
+
+
+
+
+/* Button */
+.btn {
+  @apply max-w-max h-9 flex items-center gap-2 px-4 rounded-xl font-medium text-sm ring-1 ring-zinc-50/5 ring-inset transition-[background-color]
+}
+
+
+
+
+.btn-secondary {
+  @apply bg-zinc-50 text-zinc-900 active:bg-zinc-50/80
+}
+
+
+
+
+.btn .material-symbol-rounded {
+  @apply text-[18px]
+}
+
+
+
+
+.btn:has( .material-symbol-rounded) {
+  @apply pr-3
+}
+
+
+
+
+.btn-primary {
+  @apply h-11 bg-sky-400 text-zinc-950 hover:bg-sky-300 active:bg-sky-400
+}
+
+
+
+
+.btn-outline {
+  @apply h-11 bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-800
+}
+
+
+
+
+/* Text Field */
+
+
+
+
+.label {
+  @apply block text-zinc-200 text-sm font-normal mb-2
+}
+
+
+
+
+.text-field {
+  @apply block outline-none w-full px-3 py-3 text-sm bg-zinc-800 rounded-xl ring-1 ring-inset ring-transparent transition-shadow hover:ring-zinc-50/5 focus:ring-sky-400 focus:ring-2
+}
+
+
+
+
+
+
+
+
+.text-field::placeholder {
+  @apply text-zinc-400
+}
+
