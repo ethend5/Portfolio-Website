@@ -9,25 +9,28 @@ import ProjectCard from "./ProjectCard";
 
 const project = [
  {
-   id: 'electromagnetic-car',
-   imgSrc: '/images/electrocar.png',
-   title: 'Electromagnetic Car',
-   tags: ['Electronics', 'Engineering', 'Arduino'],
-   projectLink: ''
- },
- {
-   id: 'project-2',
-   imgSrc: '/images/questionmark.jpg',
-   title: 'In Progress...',
-   tags: ['Coming Soon'],
-   projectLink: ''
- },
- {
    id: 'project-3',
    imgSrc: '/images/questionmark.jpg',
    title: 'In Progress...',
    tags: ['Coming Soon'],
-   projectLink: ''
+   projectLink: '',
+   date: 'TBD'
+ },
+ {
+   id: 'portfolio-website',
+   imgSrc: '/images/questionmark.jpg',
+   title: 'Portfolio Website',
+   tags: ['React', 'NodeJS', 'TailwindCSS', 'JavaScript', 'HTML'],
+   projectLink: '',
+   date: 'August 2025'
+ },
+ {
+   id: 'electromagnetic-car',
+   imgSrc: '/images/electrocar.png',
+   title: 'Electromagnetic Car',
+   tags: ['Electronics', 'Engineering', 'Electromagnetism', 'Circuit Building'],
+   projectLink: '',
+   date: 'May 2025'
  }
 ];
 
@@ -47,7 +50,7 @@ const Project = () => {
 
 
                <div className="grid gap-x-4 gap-y-5 grid-cols-[repeat(auto-fill,_minmax(280px,_1fr))]">
-                   {project.map(({id, imgSrc, title, tags, projectLink }, key) => (
+                   {project.map(({id, imgSrc, title, tags, projectLink, date }, key) => (
                        <ProjectCard
                            key={key}
                            id={id}
@@ -55,6 +58,7 @@ const Project = () => {
                            title={title}
                            tags={tags}
                            projectLink={projectLink}
+                           date={date}
                            classes="reveal-up"
                        />
                    ))}
@@ -66,4 +70,3 @@ const Project = () => {
 
 
 export default Project;
-
