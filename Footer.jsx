@@ -4,12 +4,6 @@
 */
 
 
-/**
-* Components
-*/
-import { ButtonPrimary } from "./Button";
-
-
 const sitemap = [
  {
    label: 'Home',
@@ -59,14 +53,6 @@ const Footer = () => {
                        <h2 className="headline-1 mb-8 lg:max-w-[12ch]">
                            Let&apos;s Work Together Today!
                        </h2>
-
-
-                       <ButtonPrimary
-                           href="#top"
-                           label="Scroll Up"
-                           icon="arrow_upward"
-                           iconPosition="right"
-                       />
                    </div>
 
 
@@ -124,7 +110,7 @@ const Footer = () => {
                        className=""
                    >
                        <img  
-                           src="/images/logo.svg"
+                           src="/images/logo.png"
                            width={40}
                            height={40}
                            alt="Logo"
