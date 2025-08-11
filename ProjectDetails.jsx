@@ -13,52 +13,37 @@ const projectsData = [
    id: 'electromagnetic-car',
    imgSrc: '/images/electrocar.png',
    title: 'Electromagnetic Car',
-   tags: ['Electronics', 'Engineering', 'Arduino'],
+   tags: ['Electronics', 'Engineering', 'Electromagnetism', 'Circuit Building'],
    projectLink: '',
    githubLink: '', // Add if you have a GitHub repo
-   description: 'An innovative electromagnetic car project showcasing principles of electromagnetism and automotive engineering. This project demonstrates the practical application of electromagnetic forces in vehicle propulsion systems.',
+   description: 'An innovative electromagnetic car project showcasing principles of electromagnetism and circuit building. This project demonstrates the practical application of electromagnetic forces taught in AP Physics.',
    detailedDescription: `
-     This electromagnetic car project represents a breakthrough in understanding electromagnetic principles and their practical applications in automotive engineering. The project involved extensive research into electromagnetic field theory, circuit design, and mechanical engineering principles.
+     This electromagnetic car project represents a breakthrough in understanding electromagnetic principles and their practical applications in AP Physics. The project involved extensive research into electromagnetic field theory, circuit design, and mechanical engineering principles.
 
+     The car utilizes tightly wrapped copper wire around a steel bolt to create the electromagnet. The car uses two AA batteries to power the whole system. Directly wired into the breadboard which runs in parallel to have consistent voltage powering both the DC Motor and the electromagnet. 
 
-     The car utilizes electromagnetic coils strategically placed to create propulsion through magnetic field interactions. The control system, built around Arduino microcontrollers, manages the timing and intensity of electromagnetic pulses to achieve smooth and efficient movement.
-
-
-     Throughout the development process, various challenges were overcome including power efficiency optimization, electromagnetic interference reduction, and precise control system calibration.
+     The ultimate objective with this project was to magnetize ten paperclips while driving over them. My electromagnetic car was able to pick up fifteen paperclips due to me running the circuit in parallel.
    `,
    features: [
-     'Electromagnetic propulsion system with custom coil design',
-     'Arduino-based control system with real-time feedback',
-     'Custom PCB design for optimal circuit performance',
-     'Efficient power management with battery optimization',
-     'Real-time performance monitoring and data logging',
-     'Sustainable and eco-friendly design approach',
-     'Variable speed control through PWM modulation',
-     'Safety systems including emergency stop functionality'
+     'Battery Pack Routed in Parallel',
+     'Steel Bolt Wrapped in Copper Wire Charged with Electricity',
+     'Motor Connected to a Gear Train to Rotate Back Axle ',
    ],
    technologies: [
-     'Arduino Uno/Nano',
-     'Electromagnetic Coils',
-     'Power MOSFETs',
-     'Hall Effect Sensors',
-     'Li-Po Batteries',
-     'Custom PCB Design',
-     'C++ Programming',
-     'Circuit Analysis Software'
+     'DC Motor',
+     'Breadboard',
+     'Electromagnet'
    ],
    challenges: [
-     'Optimizing electromagnetic field efficiency',
-     'Managing power consumption for extended operation',
-     'Reducing electromagnetic interference',
-     'Achieving precise speed and direction control',
-     'Implementing safety and fail-safe mechanisms'
+     'Optimizing Electromagnetic Field Efficiency',
+     'Managing Power Consumption for Extended Operation',
+     'Reducing Electromagnetic Interference',
+     'Achieving a Balance Between Speed and Magnetism',
    ],
    results: [
-     'Successfully achieved smooth electromagnetic propulsion',
-     'Demonstrated 85% power efficiency in optimal conditions',
-     'Reached maximum speed of 15 mph with 2kg payload',
-     'Implemented precise directional control within 2-degree accuracy',
-     'Documented comprehensive technical specifications and performance metrics'
+     'Successfully Magnetized Fifteen Paperclips',
+     'Drove for Over Two Minutes Long',
+     'Reached a Maximum Speed of 15 [unit]',
    ],
    gallery: [
      '/images/electrocar.png',
@@ -68,23 +53,29 @@ const projectsData = [
    ]
  },
  {
-   id: 'project-2',
+   id: 'portfolio-website',
    imgSrc: '/images/questionmark.jpg',
-   title: 'In Progress...',
-   tags: ['Coming Soon'],
+   title: 'Portfolio Website',
+   tags: ['React', 'NodeJS', 'TailwindCSS', 'JavaScript', 'HTML'],
    projectLink: '',
    githubLink: '',
-   description: 'An exciting new project currently in development. Stay tuned for updates on this innovative engineering solution.',
-   detailedDescription: 'Project details will be available soon. This project is currently in the research and development phase.',
+   description: 'An Online Website to Highlight All of My Projects and Experience.',
+   detailedDescription: `
+    In today's digital-first world, I recognized the need for a compelling online presence to showcase my electrical engineering projects and technical skills. This project represented a significant learning challenge, as my JavaScript knowledge was initially quite basic, but I embraced the opportunity to expand my skillset through extensive research, YouTube tutorials, and hands-on practice. 
+    
+    The website is built using modern technologies including React for dynamic interfaces, TailwindCSS for responsive styling, and Node.js for development tooling. I encountered substantial challenges during development, including production crashes and significant code loss near completion, which tested my resilience and problem-solving abilities. 
+    
+    Despite these setbacks, I persevered and successfully created a professional-grade portfolio that demonstrates both my engineering expertise and my ability to adapt to new technologies. The completed website serves as a comprehensive showcase of my projects while reflecting my commitment to continuous learning in an ever-evolving technological landscape.
+    `,
    features: [
-     'Project details coming soon',
-     'Innovative engineering concepts',
-     'Modern technology implementation',
-     'Comprehensive documentation planned'
+     'Navigation Bar',
+     'Resume Button',
+     'Project and Experience Cards',
+     'Web-to-Email Gateway'
    ],
-   technologies: ['TBD'],
-   challenges: ['Project in development'],
-   results: ['Coming soon'],
+   technologies: ['JavaScript', 'React', 'TailwindCSS', 'HTML', 'NodeJS'],
+   challenges: ['The Website Crashing While in Production', 'A Majority of Code Getting Lost When Almost Finished'],
+   results: ['A Successful Electrical Engineering Portfolio Website'],
    gallery: ['/images/questionmark.jpg']
  },
  {
@@ -315,4 +306,3 @@ const ProjectDetails = () => {
 
 
 export default ProjectDetails;
-
