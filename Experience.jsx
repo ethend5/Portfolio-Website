@@ -14,7 +14,7 @@ const experiences = [
  {
    position: "Electrical Engineering Student",
    company: "University of California Santa Cruz",
-   duration: "2025 - Present",
+   duration: "Sep 2025 - Present",
    location: "Santa Cruz, CA",
    description: "Majoring in Electrical Engineering and Minoring in Technology Information Management",
    technologies: ["Python"],
@@ -23,19 +23,19 @@ const experiences = [
  {
    position: "Educational Intern",
    company: "Ushur",
-   duration: "June 2023 - August 2023",
+   duration: "Jun 2023 - Aug 2023",
    location: "Santa Clara, CA",
-   description: "FINISH THIS.",
-   technologies: ["AI", "Machine Learning"],
+   description: "As one of only five students selected for this opportunity, I gained hands-on experience with cutting-edge AI and automation technologies at Ushur. I learned about conversational AI, Natural Language Processing, and workflow automation while working with no-code platforms in regulated industries such as healthcare and financial services. The experience exposed me to machine learning model training, AI-powered workflow development, and enterprise-grade software practices while collaborating with teams to solve complex automation challenges.",
+   technologies: ["AI", "Machine Learning", "Natural Language Processing"],
    logo: "/images/ushurlogo.png"
  },
 {
    position: "Engineering & Comp Sci Pathway",
    company: "Mountain House High School",
-   duration: "August 2021 - May 2025",
+   duration: "Aug 2021 - May 2025",
    location: "Mountain House, CA",
-   description: "FINISH THIS.",
-   technologies: ["Python", "Fusion"],
+   description: "As a dual PLTW pathway student, I completed both the Engineering and Computer Science pathways simultaneously over four years, mastering circuit design, mechanical systems, and programming fundamentals. I balanced two demanding curricula while completing numerous hands-on projects, including my capstone TV Wall system that combined four televisions into one unified display. This interdisciplinary experience provided me with broad technical expertise and the ability to approach complex problems from multiple perspectives.",
+   technologies: ["PLTW", "Python", "Fusion", "JavaScript", "Public Speaking"],
    logo: "/images/mhhslogo.png"
  }
 ];
@@ -74,4 +74,3 @@ const Experience = () => {
 
 
 export default Experience
-
