@@ -6,12 +6,12 @@
 
 const aboutItems = [
  {
-   label: 'Project Done',
-   number: 1
+   label: 'Projects Done',
+   number: 2
  },
  {
    label: 'Years of Experience',
-   number: 1
+   number: 4
  }
 ];
 
@@ -27,7 +27,7 @@ const About = () => {
 
                <div className="bg-zinc-800/50 p-7 rounded-2xl md:p-12">
                    <p className="text-zinc-300 mb-4 md:mb-8 md:text-xl md:max-w-[60ch]">
-                       Hey! I&apos;m Ethen, a student at the University of California Santa Cruz, studying Electrical Engineering.
+                       Hey! I&apos;m Ethen, a student at the University of California, Santa Cruz studying Electrical Engineering. I'm driven by a love for engineering innovation and fascinated by the analytical nature of finance—two fields that fuel my curiosity about how systems and patterns work and evolve to progress society.
                    </p>
 
 
@@ -48,11 +48,11 @@ const About = () => {
 
 
                        <img
-                       src="/images/logo.svg"
+                       src="/images/logo.png"
                        alt="Logo"
-                       width={30}
-                       height={30}
-                       className="ml-auto md:w-[40px] md:h-[40px]" />
+                       width={40}
+                       height={40}
+                       className="ml-auto md:w-[50px] md:h-[40px]" />
                    </div>
                </div>
 
