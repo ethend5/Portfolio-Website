@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ethen Dhanaraj — Portfolio
 
-## Getting Started
+Personal portfolio site for Ethen Dhanaraj, EE student at UC Santa Cruz, built with Next.js 16, TypeScript, Tailwind CSS v4, and Framer Motion.
 
-First, run the development server:
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Fonts**: Geist Sans / Geist Mono (via `next/font/google`)
+- **Deployment**: Vercel
+
+## Local Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Start dev server at http://localhost:3000
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Adding a New Project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Projects are stored in [`src/data/projects.ts`](src/data/projects.ts). Add a new object to the array:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```ts
+{
+  slug: "my-project",          // URL-safe identifier — used as /projects/my-project
+  title: "My Project",
+  description: "Short summary shown on the card.",
+  longDescription: "Full detail shown on the project detail page.",
+  tags: ["TypeScript", "React"],
+  githubUrl: "https://github.com/ethend5/my-project",  // optional
+  liveUrl: "https://myproject.dev",                     // optional
+  featured: true,              // shows on the homepage Projects section
+}
+```
 
-## Learn More
+The project detail page at `/projects/[slug]` is automatically generated — no extra files needed.
 
-To learn more about Next.js, take a look at the following resources:
+## Resume PDF
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Place your resume at `public/resume.pdf`. It will be served at `/resume` and available for download.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploying to Vercel
 
-## Deploy on Vercel
+1. Push to GitHub.
+2. Import the repo at [vercel.com/new](https://vercel.com/new).
+3. Vercel auto-detects Next.js — no extra settings needed (see `vercel.json`).
+4. Add environment variables (see below).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Environment Variables
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Copy `.env.example` to `.env.local` and fill in the values:
+
+```bash
+cp .env.example .env.local
+```
+
+| Variable               | Purpose                                                                   |
+| ---------------------- | ------------------------------------------------------------------------- |
+| `RESEND_API_KEY`       | API key for sending contact-form emails via [Resend](https://resend.com)  |
+| `NEXT_PUBLIC_SITE_URL` | Full URL of the deployed site (e.g. `https://ethendhanaraj.com`)          |
+
+In Vercel, set these under **Project → Settings → Environment Variables**.
