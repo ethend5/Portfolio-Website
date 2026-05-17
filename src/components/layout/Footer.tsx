@@ -27,17 +27,17 @@ function LinkedinIcon({ size = 18 }: { size?: number }) {
 const SOCIAL_LINKS = [
   {
     label: "GitHub",
-    href: "https://github.com",
+    href: "https://github.com/ethend5",                  // Replace with your GitHub URL
     icon: GithubIcon,
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/in/ethen-dhanaraj/", // Replace with your LinkedIn URL
     icon: LinkedinIcon,
   },
   {
     label: "Email",
-    href: "mailto:ethen@example.com",
+    href: "mailto:ethendhanaraj@gmail.com",            // Replace with your real email
     icon: Mail,
   },
 ] as const;
@@ -67,7 +67,7 @@ function BackToTop() {
           whileTap={{ scale: 0.93 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Back to top"
-          className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-10 h-10 rounded-full bg-[#111118] border border-[#0284c7]/50 text-[#38bdf8] hover:border-[#38bdf8] transition-colors duration-200"
+          className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-10 h-10 rounded-full bg-background-800 border border-primary-600/50 text-[#38bdf8] hover:border-[#38bdf8] transition-colors duration-200"
         >
           <ArrowUp size={16} strokeWidth={2.5} />
         </motion.button>
@@ -86,7 +86,7 @@ export default function Footer() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="border-t border-white/8 bg-[#0a0a0f]"
+        className="border-t border-white/8 bg-background-900"
       >
         <div className="max-w-6xl mx-auto px-6 py-10">
 
@@ -95,7 +95,7 @@ export default function Footer() {
 
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-8 h-8 rounded-md bg-[#0ea5e9]/15 border border-[#0ea5e9]/30 text-[#38bdf8] text-sm font-bold font-mono">
+              <span className="flex items-center justify-center w-8 h-8 rounded-md bg-primary-500/15 border border-primary-500/30 text-[#38bdf8] text-sm font-bold font-mono">
                 ED
               </span>
               <span className="text-sm font-semibold text-white/80">
@@ -112,7 +112,7 @@ export default function Footer() {
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                   aria-label={label}
-                  className="text-[#64748b] hover:text-[#38bdf8] transition-colors duration-200"
+                  className="text-text-muted hover:text-[#38bdf8] transition-colors duration-200"
                   whileHover={{ scale: 1.15 }}
                   whileTap={{ scale: 0.92 }}
                   transition={{ type: "spring", stiffness: 400, damping: 20 }}
@@ -127,7 +127,7 @@ export default function Footer() {
           <div className="my-6 border-t border-white/5" />
 
           {/* Bottom row: copyright + credit */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#64748b]">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-text-muted">
             <p>© 2026 Ethen Dhanaraj. All rights reserved.</p>
             <p>Coded by Ethen Dhanaraj</p>
           </div>

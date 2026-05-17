@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import { Mail, ExternalLink, ArrowDown } from "lucide-react";
 
@@ -81,9 +82,9 @@ const PHRASES = [
 ];
 
 const SOCIAL_LINKS = [
-  { label: "GitHub",   href: "https://github.com",        Icon: GithubIcon  },
-  { label: "LinkedIn", href: "https://linkedin.com",       Icon: LinkedinIcon },
-  { label: "Email",    href: "mailto:ethen@example.com",   Icon: Mail        },
+  { label: "GitHub",   href: "https://github.com/ethend5",                  Icon: GithubIcon   }, // Replace with your GitHub URL
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/ethen-dhanaraj/", Icon: LinkedinIcon }, // Replace with your LinkedIn URL
+  { label: "Email",    href: "mailto:ethendhanaraj@gmail.com",            Icon: Mail         }, // Replace with your real email
 ] as const;
 
 function scrollTo(id: string) {
@@ -201,17 +202,20 @@ export default function Hero() {
                 </motion.a>
               ))}
 
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+              {/*
+               * Resume link — two options:
+               *   href="/resume"        → opens the embedded resume page
+               *   href="/resume.pdf" download → direct PDF download
+               */}
+              <Link
+                href="/resume"
                 className="flex items-center gap-1.5 rounded-lg border border-[#0284c7]/60 px-4 py-1.5
                            text-sm font-medium text-[#38bdf8] hover:bg-[#0ea5e9]/10 hover:border-[#38bdf8]
                            transition-all duration-200"
               >
                 <ExternalLink size={13} strokeWidth={2.5} />
                 Resume
-              </a>
+              </Link>
             </motion.div>
 
             {/* CTA buttons */}
@@ -219,29 +223,35 @@ export default function Hero() {
               variants={itemVariants}
               className="flex flex-wrap gap-4"
             >
-              <motion.button
-                onClick={() => scrollTo("projects")}
+              <motion.div
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 350, damping: 22 }}
-                className="rounded-lg bg-[#0ea5e9] px-7 py-3 text-sm font-semibold text-white
-                           shadow-lg shadow-[#0ea5e9]/20 hover:bg-[#0284c7]
-                           transition-colors duration-200"
               >
-                View Projects
-              </motion.button>
+                <Link
+                  href="/projects"
+                  className="block rounded-lg bg-primary-500 px-7 py-3 text-sm font-semibold text-white
+                             shadow-lg shadow-primary-500/20 hover:bg-primary-600
+                             transition-colors duration-200"
+                >
+                  View Projects
+                </Link>
+              </motion.div>
 
-              <motion.button
-                onClick={() => scrollTo("contact")}
+              <motion.div
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 350, damping: 22 }}
-                className="rounded-lg border border-[#0284c7] px-7 py-3 text-sm font-semibold
-                           text-[#38bdf8] hover:bg-[#0ea5e9]/10 hover:border-[#38bdf8]
-                           transition-all duration-200"
               >
-                Contact Me
-              </motion.button>
+                <Link
+                  href="/#contact"
+                  className="block rounded-lg border border-primary-600 px-7 py-3 text-sm font-semibold
+                             text-[#38bdf8] hover:bg-primary-500/10 hover:border-[#38bdf8]
+                             transition-all duration-200"
+                >
+                  Contact Me
+                </Link>
+              </motion.div>
             </motion.div>
           </motion.div>
 

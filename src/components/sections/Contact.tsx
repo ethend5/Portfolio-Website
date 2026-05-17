@@ -74,22 +74,22 @@ function CheckCircleIcon() {
 const CONNECT_LINKS = [
   {
     label: "GitHub",
-    sub: "github.com/ethen-dhanaraj",
-    href: "https://github.com",
+    sub: "github.com/ethend5",                                    // Replace with your GitHub username
+    href: "https://github.com/ethend5",                           // Replace with your GitHub URL
     Icon: GithubIcon,
     hoverBg: "hover:bg-[#0ea5e9]/5 hover:border-[#0284c7]/50 hover:text-[#38bdf8]",
   },
   {
     label: "LinkedIn",
-    sub: "linkedin.com/in/ethen-dhanaraj",
-    href: "https://linkedin.com",
+    sub: "linkedin.com/in/ethen-dhanaraj",                        // Replace with your LinkedIn handle
+    href: "https://www.linkedin.com/in/ethen-dhanaraj/",          // Replace with your LinkedIn URL
     Icon: LinkedinIcon,
     hoverBg: "hover:bg-violet-500/5 hover:border-violet-500/40 hover:text-violet-300",
   },
   {
     label: "Email",
-    sub: "ethen@example.com",
-    href: "mailto:ethen@example.com",
+    sub: "ethendhanaraj@gmail.com",                             // Replace with your real email
+    href: "mailto:ethendhanaraj@gmail.com",                     // Replace with your real email
     Icon: Mail,
     hoverBg: "hover:bg-emerald-500/5 hover:border-emerald-500/40 hover:text-emerald-300",
   },
@@ -152,7 +152,7 @@ export default function Contact() {
           className="mb-12"
         >
           <h2 className="text-3xl font-bold text-white mb-2">Get In Touch</h2>
-          <div className="h-1 w-12 rounded-full bg-[#0ea5e9]" />
+          <div className="h-1 w-12 rounded-full bg-primary-500" />
         </motion.div>
 
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
@@ -176,7 +176,7 @@ export default function Contact() {
                   <CheckCircleIcon />
                 </div>
                 <p className="text-lg font-semibold text-white">Message sent!</p>
-                <p className="text-sm text-[#94a3b8]">
+                <p className="text-sm text-text-secondary">
                   Thanks for reaching out — I&apos;ll get back to you soon.
                 </p>
                 <button
@@ -190,7 +190,7 @@ export default function Contact() {
               <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="name" className="text-xs font-medium text-[#94a3b8]">
+                    <label htmlFor="name" className="text-xs font-medium text-text-secondary">
                       Name
                     </label>
                     <input
@@ -205,7 +205,7 @@ export default function Contact() {
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="email" className="text-xs font-medium text-[#94a3b8]">
+                    <label htmlFor="email" className="text-xs font-medium text-text-secondary">
                       Email
                     </label>
                     <input
@@ -222,7 +222,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="subject" className="text-xs font-medium text-[#94a3b8]">
+                  <label htmlFor="subject" className="text-xs font-medium text-text-secondary">
                     Subject
                   </label>
                   <input
@@ -238,7 +238,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="message" className="text-xs font-medium text-[#94a3b8]">
+                  <label htmlFor="message" className="text-xs font-medium text-text-secondary">
                     Message
                   </label>
                   <textarea
@@ -265,9 +265,9 @@ export default function Contact() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 350, damping: 22 }}
-                  className="flex items-center justify-center gap-2 rounded-lg bg-[#0ea5e9]
+                  className="flex items-center justify-center gap-2 rounded-lg bg-primary-500
                              px-6 py-3 text-sm font-semibold text-white
-                             hover:bg-[#0284c7] disabled:opacity-60 disabled:cursor-not-allowed
+                             hover:bg-primary-600 disabled:opacity-60 disabled:cursor-not-allowed
                              transition-colors duration-200 self-start"
                 >
                   {status === "loading" ? (
@@ -296,7 +296,7 @@ export default function Contact() {
           >
             <div>
               <h3 className="text-xl font-semibold text-white mb-3">Let&apos;s connect</h3>
-              <p className="text-[#94a3b8] leading-relaxed text-sm">
+              <p className="text-text-secondary leading-relaxed text-sm">
                 I&apos;m always open to discussing new projects, internship opportunities,
                 research collaborations, or just geeking out about embedded systems and
                 hardware design. Drop me a line — I try to reply within 24 hours.
@@ -316,19 +316,19 @@ export default function Contact() {
                   transition={{ duration: 0.35, delay: 0.15 + i * 0.08 }}
                   whileHover={{ x: 4 }}
                   className={`group flex items-center gap-4 rounded-xl border border-white/8
-                              bg-[#111118] px-5 py-4 text-[#94a3b8]
+                              bg-background-800 px-5 py-4 text-text-secondary
                               transition-all duration-200 ${hoverBg}`}
                 >
                   <div
                     className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg
-                               border border-white/8 bg-[#0a0a0f] transition-colors duration-200
+                               border border-white/8 bg-background-900 transition-colors duration-200
                                group-hover:border-current group-hover:bg-current/5"
                   >
                     <Icon size={18} />
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-white">{label}</p>
-                    <p className="truncate text-xs text-[#64748b]">{sub}</p>
+                    <p className="truncate text-xs text-text-muted">{sub}</p>
                   </div>
                   <span className="ml-auto text-sm opacity-0 transition-opacity group-hover:opacity-100">
                     →

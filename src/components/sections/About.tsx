@@ -1,12 +1,20 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
+import Carousel from "@/components/ui/Carousel";
+
+// Replace with real photos — place files at public/images/about-1.jpg … about-4.jpg
+const ABOUT_IMAGES = [
+  "/images/about-1.jpg",
+  "/images/about-2.jpg",
+  "/images/about-3.jpg",
+  "/images/about-4.jpg",
+];
 
 const STATS = [
   { value: "5+",  label: "Projects Completed" },
-  { value: "3",   label: "Leadership Roles"   },
   { value: "10+", label: "Technologies"       },
-  { value: "3",   label: "Years Programming"  },
+  { value: "3+",  label: "Years of Experience" },
 ] as const;
 
 const containerVariants: Variants = {
@@ -36,15 +44,22 @@ export default function About() {
           <div className="h-1 w-12 rounded-full bg-[#0ea5e9]" />
         </motion.div>
 
-        <div className="grid grid-cols-1 items-start gap-14 md:grid-cols-2">
+        {/*
+          Grid layout — 3 children, 2 columns on desktop:
+            [text+pills]  [carousel]   ← row 1
+            [stat cards]  [carousel]   ← row 2 (carousel spans both rows)
+          Mobile: single column, DOM source order = text → carousel → stats
+        */}
+        <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 items-center">
 
-          {/* ── Bio text ──────────────────────────────────────────────── */}
+          {/* ── 1. Bio text + pills (col 1, row 1 on desktop) ──────────── */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="flex flex-col gap-5 text-[#94a3b8] leading-relaxed"
+            className="flex flex-col gap-5 text-text-secondary leading-relaxed
+                       lg:col-start-1 lg:row-start-1"
           >
             <motion.p variants={itemVariants}>
               I&apos;m an Electrical Engineering student at UC Santa Cruz with a genuine
@@ -83,8 +98,8 @@ export default function About() {
               ].map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-md border border-white/5 bg-[#111118] px-3 py-1
-                             text-xs font-medium text-[#64748b]"
+                  className="rounded-md border border-white/5 bg-background-800 px-3 py-1
+                             text-xs font-medium text-text-muted"
                 >
                   {tag}
                 </span>
@@ -92,29 +107,50 @@ export default function About() {
             </motion.div>
           </motion.div>
 
-          {/* ── Stat cards ────────────────────────────────────────────── */}
+          {/* ── 2. Carousel (col 2, spans both rows on desktop; row 2 mobile) ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+            className="min-w-0 lg:min-w-[320px] lg:col-start-2 lg:row-start-1 lg:row-end-3
+                       flex flex-col items-center justify-center"
+          >
+            <Carousel images={ABOUT_IMAGES} />
+          </motion.div>
+
+          {/* ── 3. Stat cards (col 1, row 2 on desktop; row 3 mobile) ───── */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-2 gap-4"
+            className="lg:col-start-1 lg:row-start-2 lg:self-start"
           >
-            {STATS.map(({ value, label }) => (
-              <motion.div
-                key={label}
-                variants={itemVariants}
-                whileHover={{ y: -5, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 350, damping: 22 }}
-                className="flex flex-col items-center justify-center rounded-xl border border-white/5
-                           bg-[#111118] p-8 text-center
-                           hover:border-[#0284c7]/40 hover:shadow-[0_0_20px_rgba(14,165,233,0.06)]
-                           transition-colors duration-200"
-              >
-                <span className="text-4xl font-bold text-[#38bdf8]">{value}</span>
-                <span className="mt-2 text-sm text-[#64748b]">{label}</span>
-              </motion.div>
-            ))}
+            <div style={{ display: "flex", gap: "16px", width: "100%" }}>
+              {STATS.map(({ value, label }) => (
+                <motion.div
+                  key={label}
+                  variants={itemVariants}
+                  style={{ flex: 1 }}
+                  className="flex flex-col items-center justify-center gap-1 rounded-lg
+                             border border-white/5 border-l-[3px] border-l-primary-500
+                             bg-background-800 px-3 py-3 text-center"
+                >
+                  <span className="text-xl font-bold text-[#38bdf8]">{value}</span>
+                  <span
+                    style={{
+                      fontSize: "clamp(0.7rem, 1.5vw, 0.85rem)",
+                      whiteSpace: "normal",
+                      textAlign: "center",
+                    }}
+                    className="text-text-muted"
+                  >
+                    {label}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
         </div>

@@ -84,13 +84,8 @@ export default function SkillCard({ skill, index }: Props) {
 
   return (
     <motion.div
-      layout
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.88 }}
-      transition={{ duration: 0.25, delay: index * 0.035 }}
       whileHover={{ y: -5, scale: 1.02 }}
-      className="group flex flex-col gap-3 rounded-xl border border-white/5 bg-[#0a0a0f] p-5 cursor-default
+      className="group flex flex-col gap-2 rounded-xl border border-white/5 bg-[#0a0a0f] px-5 py-3 cursor-default
                  hover:border-[#0284c7]/50 hover:shadow-[0_0_20px_rgba(14,165,233,0.07)]
                  transition-colors duration-200"
     >
@@ -116,11 +111,6 @@ export default function SkillCard({ skill, index }: Props) {
           {CATEGORY_LABELS[skill.category]}
         </span>
       </div>
-
-      {/* Description */}
-      <p className="line-clamp-2 text-xs leading-relaxed text-[#64748b]">
-        {skill.description}
-      </p>
 
       {/* Proficiency bar */}
       <div className="mt-auto flex items-center gap-1">

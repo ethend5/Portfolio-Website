@@ -88,7 +88,7 @@ function NavLink({
         onClick={onClick}
         className={[
           "relative py-1 text-sm font-medium transition-colors duration-200",
-          isActive ? "text-white" : "text-[#94a3b8] hover:text-white",
+          isActive ? "text-white" : "text-text-secondary hover:text-white",
         ].join(" ")}
         aria-current={isActive ? "page" : undefined}
       >
@@ -143,7 +143,7 @@ function MobileLink({
         onClick={onClick}
         className={[
           "w-full text-left text-2xl font-semibold py-3 transition-colors duration-200 border-b border-white/5",
-          isActive ? "text-[#38bdf8]" : "text-[#94a3b8] hover:text-white",
+          isActive ? "text-[#38bdf8]" : "text-text-secondary hover:text-white",
         ].join(" ")}
       >
         {label}
@@ -180,7 +180,7 @@ export default function Navbar() {
         className={[
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
-            ? "bg-[#0a0a0f]/85 backdrop-blur-xl border-b border-white/8 shadow-lg shadow-black/20"
+            ? "bg-background-900/85 backdrop-blur-xl border-b border-white/8 shadow-lg shadow-black/20"
             : "bg-transparent border-b border-transparent",
         ].join(" ")}
       >
@@ -193,7 +193,7 @@ export default function Navbar() {
             aria-label="Scroll to top"
           >
             {/* ED monogram box */}
-            <span className="flex items-center justify-center w-8 h-8 rounded-md bg-[#0ea5e9]/15 border border-[#0ea5e9]/30 text-[#38bdf8] text-sm font-bold font-mono group-hover:bg-[#0ea5e9]/25 group-hover:border-[#0ea5e9]/50 transition-all duration-200">
+            <span className="flex items-center justify-center w-8 h-8 rounded-md bg-primary-500/15 border border-primary-500/30 text-[#38bdf8] text-sm font-bold font-mono group-hover:bg-primary-500/25 group-hover:border-primary-500/50 transition-all duration-200">
               ED
             </span>
             <span className="text-sm font-semibold text-white/90 group-hover:text-white transition-colors duration-200 hidden sm:block">
@@ -217,10 +217,8 @@ export default function Navbar() {
               {/* Resume button */}
               <li>
                 <a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-1.5 text-sm font-medium rounded-md border border-[#0284c7] text-[#38bdf8] hover:bg-[#0ea5e9]/10 hover:border-[#38bdf8] transition-all duration-200"
+                  href="/resume"
+                  className="inline-flex items-center gap-1.5 px-4 py-1.5 text-sm font-medium rounded-md border border-primary-600 text-[#38bdf8] hover:bg-primary-500/10 hover:border-[#38bdf8] transition-all duration-200"
                 >
                   Resume
                 </a>
@@ -231,7 +229,7 @@ export default function Navbar() {
           {/* Hamburger */}
           <button
             onClick={() => setMobileOpen((v) => !v)}
-            className="md:hidden relative w-9 h-9 flex items-center justify-center text-[#94a3b8] hover:text-white transition-colors"
+            className="md:hidden relative w-9 h-9 flex items-center justify-center text-text-secondary hover:text-white transition-colors"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
           >
@@ -285,16 +283,16 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 bottom-0 z-40 w-[min(80vw,340px)] bg-[#111118] border-l border-white/8 flex flex-col md:hidden"
+              className="fixed top-0 right-0 bottom-0 z-40 w-[min(80vw,340px)] bg-background-800 border-l border-white/8 flex flex-col md:hidden"
             >
               {/* Panel header */}
               <div className="h-16 flex items-center justify-between px-6 border-b border-white/5">
-                <span className="flex items-center justify-center w-8 h-8 rounded-md bg-[#0ea5e9]/15 border border-[#0ea5e9]/30 text-[#38bdf8] text-sm font-bold font-mono">
+                <span className="flex items-center justify-center w-8 h-8 rounded-md bg-primary-500/15 border border-primary-500/30 text-[#38bdf8] text-sm font-bold font-mono">
                   ED
                 </span>
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="text-[#94a3b8] hover:text-white transition-colors"
+                  className="text-text-secondary hover:text-white transition-colors"
                   aria-label="Close menu"
                 >
                   <X size={20} />
@@ -330,11 +328,9 @@ export default function Navbar() {
                   className="mt-8"
                 >
                   <a
-                    href="/resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/resume"
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center justify-center w-full py-3 rounded-lg border border-[#0284c7] text-[#38bdf8] font-medium hover:bg-[#0ea5e9]/10 transition-all duration-200"
+                    className="flex items-center justify-center w-full py-3 rounded-lg border border-primary-600 text-[#38bdf8] font-medium hover:bg-primary-500/10 transition-all duration-200"
                   >
                     Resume
                   </a>

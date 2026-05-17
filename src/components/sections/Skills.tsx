@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion"; // AnimatePresence kept for empty-state fade
 import SkillCard from "@/components/ui/SkillCard";
 import { skills } from "@/data/skills";
 import type { Skill } from "@/types";
@@ -87,16 +87,11 @@ export default function Skills() {
         </motion.div>
 
         {/* Skills grid */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
-        >
-          <AnimatePresence mode="popLayout">
-            {filtered.map((skill, i) => (
-              <SkillCard key={skill.name} skill={skill} index={i} />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {filtered.map((skill, i) => (
+            <SkillCard key={skill.name} skill={skill} index={i} />
+          ))}
+        </div>
 
         {/* Empty state */}
         <AnimatePresence>
