@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -186,11 +187,11 @@ export default function Navbar() {
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
-          {/* Logo */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          {/* Logo — navigates to home from any page */}
+          <Link
+            href="/"
             className="flex items-center gap-3 group"
-            aria-label="Scroll to top"
+            aria-label="Go to home"
           >
             {/* ED monogram box */}
             <span className="flex items-center justify-center w-8 h-8 rounded-md bg-primary-500/15 border border-primary-500/30 text-[#38bdf8] text-sm font-bold font-mono group-hover:bg-primary-500/25 group-hover:border-primary-500/50 transition-all duration-200">
@@ -199,7 +200,7 @@ export default function Navbar() {
             <span className="text-sm font-semibold text-white/90 group-hover:text-white transition-colors duration-200 hidden sm:block">
               Ethen Dhanaraj
             </span>
-          </button>
+          </Link>
 
           {/* Desktop links */}
           <nav aria-label="Primary navigation">

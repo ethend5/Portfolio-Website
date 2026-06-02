@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { Mail, ExternalLink, ArrowDown } from "lucide-react";
 
@@ -283,17 +284,18 @@ export default function Hero() {
                 className="absolute -inset-2 rounded-full border border-[#0ea5e9]/35"
               />
 
-              {/*
-               * Circular image container
-               * Replace the PersonSilhouette with:
-               * <Image src="/headshot.jpg" alt="Ethen Dhanaraj" fill className="object-cover" />
-               */}
               <div
                 className="relative flex h-64 w-64 items-center justify-center overflow-hidden
-                           rounded-full border-2 border-[#0284c7]/40 bg-[#111118]
+                           rounded-full border-2 border-primary-600/40 bg-background-800
                            sm:h-72 sm:w-72 md:h-80 md:w-80"
               >
-                <PersonSilhouette />
+                <Image
+                  src="/headshot.jpg"
+                  alt="Ethen Dhanaraj"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
                 {/* Subtle radial gradient overlay */}
                 <div
                   aria-hidden

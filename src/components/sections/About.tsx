@@ -3,12 +3,17 @@
 import { motion, type Variants } from "framer-motion";
 import Carousel from "@/components/ui/Carousel";
 
-// Replace with real photos — place files at public/images/about-1.jpg … about-4.jpg
+/*
+ * ── Photo paths ────────────────────────────────────────────────────────────
+ * Save the three photos to public/images/ using these exact filenames:
+ *   about-1.jpg  →  hiking in the Santa Cruz redwoods (UCSC hoodie)
+ *   about-2.jpg  →  photography / camera shot
+ *   about-3.jpg  →  water polo
+ */
 const ABOUT_IMAGES = [
   "/images/about-1.jpg",
   "/images/about-2.jpg",
   "/images/about-3.jpg",
-  "/images/about-4.jpg",
 ];
 
 const STATS = [
