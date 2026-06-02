@@ -18,6 +18,22 @@ export const experiences: Experience[] = [
     skills: ["AI", "ML", "NLP"],
   },
   {
+    id: "180-consulting-2026",
+    company: "180 Degrees Consulting",
+    role: "Junior Consultant",
+    type: "technical",
+    startDate: "2026-05",
+    endDate: "Present",
+    description:
+      "Delivering strategic consulting services to nonprofit and social enterprise clients as part of the world's largest consultancy for nonprofits.",
+    responsibilities: [
+      "Worked directly with nonprofit clients to diagnose operational gaps and deliver actionable recommendations across a 10-week engagement cycle.",
+      "Conducted market research and stakeholder interviews to build out strategy decks used in client presentations.",
+      "Collaborated with a team of 4–6 consultants to scope project deliverables, divide workstreams, and hit weekly milestones.",
+    ],
+    skills: ["Strategy", "Market Research", "Client Management", "Consulting", "Presentation"],
+  },
+  {
     id: "akpsi-2026",
     company: "Alpha Kappa Psi",
     role: "Vice President of Professional Development",

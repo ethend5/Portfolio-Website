@@ -2,6 +2,8 @@
 
 import { motion, type Variants } from "framer-motion";
 import Carousel from "@/components/ui/Carousel";
+import { projects } from "@/data/projects";
+import { skills } from "@/data/skills";
 
 /*
  * ── Photo paths ────────────────────────────────────────────────────────────
@@ -16,11 +18,17 @@ const ABOUT_IMAGES = [
   "/images/about-3.jpg",
 ];
 
-const STATS = [
-  { value: "5+",  label: "Projects Completed" },
-  { value: "10+", label: "Technologies"       },
-  { value: "3+",  label: "Years of Experience" },
-] as const;
+// Year Ethen started gaining professional/engineering experience
+const EXPERIENCE_START_YEAR = 2023;
+
+function getStats() {
+  const yearsOfExperience = new Date().getFullYear() - EXPERIENCE_START_YEAR;
+  return [
+    { value: `${projects.length}+`, label: "Projects Completed"  },
+    { value: `${skills.length}+`,   label: "Technologies"        },
+    { value: `${yearsOfExperience}+`, label: "Years of Experience" },
+  ];
+}
 
 const containerVariants: Variants = {
   hidden: {},
@@ -67,28 +75,34 @@ export default function About() {
                        lg:col-start-1 lg:row-start-1"
           >
             <motion.p variants={itemVariants}>
-              I&apos;m an Electrical Engineering student at UC Santa Cruz with a genuine
-              obsession for the intersection of hardware and software. Whether I&apos;m
-              writing bare-metal firmware on an STM32, routing a 4-layer PCB, or training
-              a neural network on RF signal data, I&apos;m most at home building systems
-              that have real physical impact.
+              I&apos;m an Electrical Engineering student at UC Santa Cruz with a focus on
+              building systems that sit at the boundary of hardware and software. My
+              coursework and hands-on work span embedded systems, high voltage electronics,
+              machine learning, and full-stack development, and I&apos;m most engaged when
+              a project requires thinking across all of those layers at once.
             </motion.p>
 
             <motion.p variants={itemVariants}>
-              My curiosity about how things{" "}
-              <em className="text-white not-italic font-medium">actually</em> work — not
-              just at the software abstraction level, but all the way down to the silicon —
-              has led me through embedded systems, control theory, and the rapidly evolving
-              space where AI meets hardware design. I find the most interesting problems
-              live at those boundaries.
+              On the hardware side, I work with Formula Slug&apos;s electric vehicle team
+              doing PCB layout, high voltage interlock design, and battery pack assembly.
+              On the software and AI side, I interned at Ushur building AI-powered
+              automation workflows for enterprise clients in healthcare and finance, and
+              recently built ChainPilot, a multi-agent supply chain decision framework, in
+              24 hours at a hackathon.
             </motion.p>
 
             <motion.p variants={itemVariants}>
-              Outside of technical work, I&apos;ve led a 60-member engineering fraternity,
-              directed competition hardware teams, and mentored peers in PCB layout and
-              embedded programming. I believe the best engineers combine deep technical
-              craft with the ability to communicate, lead, and ship — and that&apos;s the
-              engineer I&apos;m working to become.
+              Outside of technical work, I serve as Vice President of Professional
+              Development for Alpha Kappa Psi, where I founded Alpha Technologies, an
+              internal organization focused on growing the technical skills of chapter
+              members. I also work with nonprofits through 180 Degrees Consulting, helping
+              organizations identify operational gaps and build actionable strategies.
+            </motion.p>
+
+            <motion.p variants={itemVariants}>
+              I believe the strongest engineers are ones who can go deep on a technical
+              problem and still communicate clearly, lead a team, and deliver something
+              real. That is the standard I hold myself to.
             </motion.p>
 
             {/* Quick-fact tags */}
@@ -133,7 +147,7 @@ export default function About() {
             className="lg:col-start-1 lg:row-start-2 lg:self-start"
           >
             <div style={{ display: "flex", gap: "16px", width: "100%" }}>
-              {STATS.map(({ value, label }) => (
+              {getStats().map(({ value, label }) => (
                 <motion.div
                   key={label}
                   variants={itemVariants}

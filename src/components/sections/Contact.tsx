@@ -297,9 +297,9 @@ export default function Contact() {
             <div>
               <h3 className="text-xl font-semibold text-white mb-3">Let&apos;s connect</h3>
               <p className="text-text-secondary leading-relaxed text-sm">
-                I&apos;m always open to discussing new projects, internship opportunities,
-                research collaborations, or just geeking out about embedded systems and
-                hardware design. Drop me a line — I try to reply within 24 hours.
+                I&apos;m always open to talking about new projects, internship
+                opportunities, or just connecting with people working on interesting
+                problems. Feel free to reach out!
               </p>
             </div>
 

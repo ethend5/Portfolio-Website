@@ -69,6 +69,6 @@ export const skills: Skill[] = [
     category: "cad",
     icon: "SiFusion360",
     description: "3D modeling and CAM for prototyping custom hardware enclosures and brackets.",
-    proficiency: 4,
+    proficiency: 5,
   },
 ];
