@@ -34,7 +34,7 @@ export const projects: Project[] = [
     date: "2025-05",
     tags: ["Electromagnetics", "Circuit Design", "Parallel Circuit", "Physics", "AP Physics C"],
     image: "/projects/electromagnetic-car.png",
-    demo: "https://youtube.com", // Replace with your Electromagnetic Car video URL
+    demo: "https://youtube.com/shorts/RFz2Em4uBmo?feature=share",
     demoLabel: "Watch Video",
     featured: true,
     category: "hardware",
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     date: "2024-11",
     tags: ["CAD", "Fusion 360", "Product Design", "Fabrication", "PLTW"],
     image: "/projects/thor-hammer.png",
-    demo: "https://youtube.com", // Replace with your Thor Hammer video URL
+    demo: "https://youtu.be/sxhJGrL8yqU",
     demoLabel: "Watch Video",
     featured: true,
     category: "hardware",
@@ -75,51 +75,26 @@ export const projects: Project[] = [
       "Scaling an existing object into a functional product is harder than it looks. Small proportion errors that seem minor in a sketch become obvious in the physical model. Breaking the design into separate parts early on made the whole build more manageable and made it easier to fix individual sections without rebuilding the whole thing. Also learned that adding meaningful personal details, like the Celtic Star and the Greek text, makes a project feel like it actually belongs to the people who built it.",
   },
   {
-    title: "Real-Time Lab Data Dashboard",
-    slug: "lab-data-dashboard",
+    title: "TV Wall",
+    slug: "tv-wall",
     description:
-      "A web dashboard that streams live sensor readings from lab instruments over WebSocket and renders them as interactive charts.",
+      "A four-TV video wall built as a PLTW capstone project, mounted on a custom unistrut frame and installed in a high school classroom to replace an outdated projector with a brighter, more flexible display.",
     longDescription:
-      "Built a Next.js frontend that connects to a Node.js/WebSocket server, which itself polls lab instruments via VISA/GPIB using a Python bridge script. Readings are stored in a lightweight SQLite database and served via a REST API for historical queries. Charts are rendered with Recharts and update at 1 Hz without page refresh.",
-    date: "2023-08",
-    tags: ["Next.js", "Node.js", "WebSocket", "Python", "SQLite", "Recharts"],
-    image: "/projects/lab-dashboard.png",
-    github: "https://github.com",
+      "Designed and built a four-TV video wall as the capstone project for Engineering Design and Development, a PLTW course in high school. The project spanned the entire second semester and was completed in May 2025. The display was mounted on a custom unistrut frame built from scratch and installed on the classroom wall. The four TVs could either combine into one large unified display or operate independently, giving the teacher a much more flexible and visible presentation setup than the old projector system.",
+    date: "2025-05",
+    tags: ["Fabrication", "Unistrut", "AV Systems", "Structural Design", "PLTW"],
+    image: "/projects/tv-wall.png",
     featured: false,
-    category: "web",
+    category: "hardware",
     problem:
-      "Lab members were manually copying multimeter and oscilloscope readings into spreadsheets during long-running experiments.",
+      "The existing classroom projector was outdated, low quality, and nearly impossible to see when the lights were on. Its positioning on the ceiling made visibility even worse for students sitting at certain angles. On top of that, three whiteboards behind the projector screen were completely blocked off and going unused. The classroom needed a display solution that was brighter, clearer, and did not take up the whiteboard space.",
     process:
-      "Wrote a Python VISA wrapper for instrument communication, piped data to a Node.js server over stdin, and exposed it via WebSocket. The Next.js dashboard subscribes and renders live charts.",
+      "Spent the first portion of the semester defining the problem, researching solutions, and narrowing down the best approach. Landed on a four-TV setup as the most practical option because it was cheaper than a single large commercial display, more customizable, and easier to repair or replace individual panels down the line. From there, moved into designing a unistrut frame from scratch to hold all four TVs flush against the wall in a two-by-two grid. The back half of the semester was focused on fabrication, assembly, and installation. Configured the TVs so they could either mirror or extend a single source across all four screens as one large output, or run independently for different use cases.",
     challenges:
-      "GPIB polling latency varied by instrument model. Solved with a per-instrument configurable poll interval and a debounced update queue on the frontend.",
+      "Building a frame sturdy enough to safely hold four TVs required careful planning around load distribution and wall anchoring. Getting all four panels aligned precisely so the combined display looked seamless took significant adjustment during installation. Routing the cables cleanly and making sure each TV could switch between unified and independent modes without a complicated setup also required some problem solving. Having a full semester to work through the project helped a lot because it gave enough time to go back and revise decisions that did not work out on the first attempt.",
     results:
-      "Eliminated manual transcription errors. Used in 3 ongoing research experiments; saved an estimated 2 hours of data-entry work per week.",
+      "The video wall was successfully installed and put into active use in the classroom before the end of the school year. The four-TV setup delivered a significantly brighter and clearer image than the old projector under normal classroom lighting. The whiteboards that were previously blocked became accessible again, and teachers gained the flexibility to use the full combined display or individual screens depending on the lesson.",
     lessons:
-      "WebSocket backpressure handling matters at scale — a slow chart render loop initially caused dropped frames. Moving chart updates to a requestAnimationFrame queue fixed it.",
-  },
-  {
-    title: "RTOS Task Scheduler Benchmarking Suite",
-    slug: "rtos-scheduler-benchmark",
-    description:
-      "A benchmarking harness written in C that measures context-switch latency, jitter, and CPU utilization across FreeRTOS priority levels.",
-    longDescription:
-      "Wrote a suite of synthetic task workloads in C targeting the STM32F4 Nucleo board. Each test uses a hardware timer to timestamp context switches and logs results via SWO/ITM to a host-side Python parser that produces statistical reports. Benchmarked preemptive vs. cooperative scheduling and the effect of task count on worst-case interrupt latency.",
-    date: "2023-04",
-    tags: ["C", "FreeRTOS", "STM32", "Python", "RTOS", "Embedded Systems"],
-    image: "/projects/rtos-benchmark.png",
-    github: "https://github.com",
-    featured: false,
-    category: "embedded",
-    problem:
-      "The team had no quantitative baseline for FreeRTOS scheduler overhead before committing to it for a timing-critical project.",
-    process:
-      "Defined test cases for 2, 4, 8, and 16 tasks at mixed priorities, automated test execution with a Python host script, and visualized results with matplotlib histograms.",
-    challenges:
-      "SWO bandwidth was a bottleneck — logging every context switch saturated the 2 MHz SWO clock. Solved by logging only on threshold-crossing events.",
-    results:
-      "Measured median context-switch latency of 1.8 µs with <200 ns jitter at 168 MHz, giving the team confidence for a 5 ms hard deadline application.",
-    lessons:
-      "Measurement infrastructure needs to be as carefully designed as the system under test. A poorly placed timestamp invalidates your results.",
+      "A semester-long capstone project teaches you things that shorter projects do not. Having extended time meant the early planning decisions actually mattered because there was enough runway to see how they played out later in the build. Working with unistrut also taught a lot about structural planning before cutting or assembling anything, since mistakes in the frame are hard to fix once the steel is mounted. The project also showed how a well-scoped engineering solution does not have to be expensive to be effective. Four consumer TVs on a custom frame outperformed a dedicated projector system at a fraction of the replacement cost.",
   },
 ];

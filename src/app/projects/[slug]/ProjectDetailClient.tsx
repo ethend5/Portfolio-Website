@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ExternalLink, ArrowLeft, Calendar } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, ArrowLeft, Calendar, Play, X } from "lucide-react";
 import type { Project } from "@/types";
 
 // ─── Category config ──────────────────────────────────────────────────────────
@@ -62,6 +63,70 @@ function formatDate(dateStr: string): string {
   });
 }
 
+// ─── Convert share URLs to embeddable URLs ────────────────────────────────────
+
+function toEmbedUrl(url: string): string {
+  // YouTube: youtube.com/watch?v=ID, youtu.be/ID, or youtube.com/shorts/ID
+  const yt = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)([^&\s?]+)/);
+  if (yt) return `https://www.youtube.com/embed/${yt[1]}?autoplay=1&rel=0`;
+
+  // Google Drive: drive.google.com/file/d/ID/view
+  const drive = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+  if (drive) return `https://drive.google.com/file/d/${drive[1]}/preview`;
+
+  return url;
+}
+
+// ─── Video modal ──────────────────────────────────────────────────────────────
+
+function VideoModal({ url, onClose }: { url: string; onClose: () => void }) {
+  const embedUrl = toEmbedUrl(url);
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 16 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 16 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className="relative w-full max-w-4xl"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            aria-label="Close video"
+            className="absolute -top-10 right-0 flex items-center gap-1.5 text-sm
+                       text-white/70 hover:text-white transition-colors"
+          >
+            <X size={16} /> Close
+          </button>
+
+          {/* 16:9 iframe wrapper */}
+          <div className="relative w-full rounded-xl overflow-hidden bg-black"
+               style={{ paddingTop: "56.25%" }}>
+            <iframe
+              src={embedUrl}
+              className="absolute inset-0 w-full h-full"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              title="Project demo video"
+            />
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 // ─── Content sections definition ─────────────────────────────────────────────
 
 const SECTION_DEFS = [
@@ -81,6 +146,7 @@ interface Props {
 
 export default function ProjectDetailClient({ project }: Props) {
   const cfg = CATEGORY[project.category];
+  const [videoOpen, setVideoOpen] = useState(false);
 
   const sections = SECTION_DEFS.map((def) => ({
     title:   def.title,
@@ -231,17 +297,15 @@ export default function ProjectDetailClient({ project }: Props) {
                     </a>
                   )}
                   {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      onClick={() => setVideoOpen(true)}
                       className="flex items-center justify-center gap-2 rounded-lg border border-[#0284c7]
                                  px-4 py-2.5 text-sm font-semibold text-[#38bdf8]
                                  hover:bg-[#0ea5e9]/10 hover:border-[#38bdf8] transition-colors duration-200"
                     >
-                      <ExternalLink size={14} strokeWidth={2.5} />
+                      <Play size={14} strokeWidth={2.5} />
                       {project.demoLabel ?? "Live Demo"}
-                    </a>
+                    </button>
                   )}
                 </div>
               )}
@@ -295,6 +359,11 @@ export default function ProjectDetailClient({ project }: Props) {
 
         </div>
       </div>
+
+      {/* Video modal */}
+      {videoOpen && project.demo && (
+        <VideoModal url={project.demo} onClose={() => setVideoOpen(false)} />
+      )}
     </motion.div>
   );
 }
