@@ -240,7 +240,7 @@ export default function ProjectDetailClient({ project }: Props) {
                                  hover:bg-[#0ea5e9]/10 hover:border-[#38bdf8] transition-colors duration-200"
                     >
                       <ExternalLink size={14} strokeWidth={2.5} />
-                      Live Demo
+                      {project.demoLabel ?? "Live Demo"}
                     </a>
                   )}
                 </div>

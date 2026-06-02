@@ -31,9 +31,11 @@ export const projects: Project[] = [
       "A battery-powered car built for AP Physics C that drives to a set of paper clips and picks them up using a hand-wound electromagnet, powered by a parallel circuit from two AA batteries.",
     longDescription:
       "Designed and built a small electromagnetic car for AP Physics C in high school. The car used two AA batteries wired in a parallel circuit to power both a set of drive wheels and a homemade electromagnet at the same time. The electromagnet was built by wrapping copper wire around a bolt to create a coil that could generate a magnetic field strong enough to pick up metal objects. The goal was to drive the car to a set of paper clips and pick up all 10 of them.",
-    date: "2023-05",
+    date: "2025-05",
     tags: ["Electromagnetics", "Circuit Design", "Parallel Circuit", "Physics", "AP Physics C"],
     image: "/projects/electromagnetic-car.png",
+    demo: "https://youtube.com", // Replace with your Electromagnetic Car video URL
+    demoLabel: "Watch Video",
     featured: true,
     category: "hardware",
     problem:
@@ -48,28 +50,29 @@ export const projects: Project[] = [
       "This project brought a lot of the AP Physics C curriculum to life in a hands-on way. Concepts like magnetic flux, current loops, and circuit analysis stopped being just formulas and became real design decisions with visible results. Planning the circuit layout before starting the physical build also saved a lot of time and prevented wiring mistakes during assembly.",
   },
   {
-    title: "Wireless Sensor Network PCB",
-    slug: "wireless-sensor-network-pcb",
+    title: "Thor Hammer Microphone Holder",
+    slug: "thor-hammer-microphone-holder",
     description:
-      "A 4-layer PCB for a battery-powered environmental sensor node with LoRa radio and an onboard ARM Cortex-M0+ MCU.",
+      "A scaled-up Thor Hammer microphone holder designed and fabricated in a PLTW Engineering Design and Development course, featuring a three-part snap assembly and custom Celtic and Greek detailing.",
     longDescription:
-      "Designed a complete sensor node from schematic to manufactured board in Altium Designer. The board integrates an ATSAMD21 MCU, RFM95W LoRa module, BME680 environmental sensor, and a MAX17048 fuel gauge for battery monitoring. RF trace routing followed 50Ω microstrip guidelines and the board passed FCC Part 15 pre-scan at the campus EMC lab.",
-    date: "2023-11",
-    tags: ["Altium Designer", "ARM Cortex-M0+", "LoRa", "4-Layer PCB", "RF", "C"],
-    image: "/projects/wsn-pcb.png",
-    github: "https://github.com",
+      "Designed and built a Thor Hammer microphone holder for Engineering Design and Development, a PLTW course in high school. The holder was scaled up from a toy Thor Hammer that belonged to our teacher and redesigned to fit a real microphone inside the handle. The final product was a three-part assembly that snaps together through a locking mechanism and lets the user speak into the microphone while it sits inside the hammer head.",
+    date: "2024-11",
+    tags: ["CAD", "Fusion 360", "Product Design", "Fabrication", "PLTW"],
+    image: "/projects/thor-hammer.png",
+    demo: "https://youtube.com", // Replace with your Thor Hammer video URL
+    demoLabel: "Watch Video",
     featured: true,
     category: "hardware",
     problem:
-      "Off-the-shelf development boards were too large and power-hungry for a long-term outdoor deployment requiring 6-month battery life.",
+      "This was an unnecessary invention, and we knew that going in. The goal was not to solve a practical problem but to practice the full engineering design process from constraints and research through modeling and fabrication, using a fun concept as the vehicle.",
     process:
-      "Started with system-level power budget in Excel, selected components to hit <50 µA average draw, routed the 4-layer stackup with signal integrity constraints, and iterated through two board spins.",
+      "Used our teacher's toy Thor Hammer as the reference model and scaled it up proportionally so the microphone could fit inside the handle without making the hammer look distorted. Broke the design into three separate parts to make it easier to manufacture and assemble. Added a locking snap mechanism so the pieces connect securely and the microphone can be loaded in through the top. Also incorporated a Celtic Star on the sides of the hammer to represent our classmate Geuss' heritage, and stamped the piece with \"Microphone Ethen and Aadi Co 2025\" written in Greek letters because it looked cool and gave the project some personality.",
     challenges:
-      "First spin had a LoRa TX spur at the MCU clock harmonic causing adjacent-channel interference. Fixed by adding π-filter on the RF supply and increasing keep-out around the crystal.",
+      "The biggest constraint was keeping the hammer proportional to the original toy while also making it large enough to actually hold a microphone. Scaling up a model while preserving visual proportions required careful measurement and several design revisions. Getting the three-part locking mechanism to snap together cleanly and hold under normal use also took a few iterations to dial in.",
     results:
-      "Board achieved 7-month battery life in field testing. LoRa link budget provided 3 km range in light urban environment.",
+      "The final hammer holder fit the microphone correctly, maintained proportional dimensions relative to the original toy, and held together reliably through the locking mechanism. The top opening allowed the microphone to remain fully functional while seated inside the hammer head.",
     lessons:
-      "Simulation (HyperLynx) and physical EMC pre-scan together caught issues that schematic review alone would have missed. Document every stackup assumption before sending Gerbers.",
+      "Scaling an existing object into a functional product is harder than it looks. Small proportion errors that seem minor in a sketch become obvious in the physical model. Breaking the design into separate parts early on made the whole build more manageable and made it easier to fix individual sections without rebuilding the whole thing. Also learned that adding meaningful personal details, like the Celtic Star and the Greek text, makes a project feel like it actually belongs to the people who built it.",
   },
   {
     title: "Real-Time Lab Data Dashboard",

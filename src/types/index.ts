@@ -8,6 +8,7 @@ export interface Project {
   image: string;
   github?: string;
   demo?: string;
+  demoLabel?: string;
   featured: boolean;
   category: 'hardware' | 'software' | 'ai' | 'embedded' | 'web';
   problem?: string;
