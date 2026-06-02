@@ -25,29 +25,27 @@ export const projects: Project[] = [
       "Separating the simulator from the optimizer early on was the right call. It kept the agents honest and made the evaluation meaningful rather than circular. Defining the execution constraint model before writing agent logic also helped avoid a whole category of hard-to-debug bugs where agents were silently mutating state. Running a critic agent on top of the proposer noticeably improved decision quality, which was a good real-world validation of the core idea behind the project.",
   },
   {
-    title: "ML-Based Signal Classifier",
-    slug: "ml-signal-classifier",
+    title: "Electromagnetic Car",
+    slug: "electromagnetic-car",
     description:
-      "A Python pipeline that classifies modulation schemes (AM, FM, BPSK, QPSK) from raw IQ samples using a 1D CNN.",
+      "A battery-powered car built for AP Physics C that drives to a set of paper clips and picks them up using a hand-wound electromagnet, powered by a parallel circuit from two AA batteries.",
     longDescription:
-      "Collected synthetic IQ datasets using GNU Radio with channel impairments (AWGN, Rayleigh fading). Preprocessed samples into fixed-length tensors and trained a 1D convolutional neural network in PyTorch. Exported the model to ONNX and deployed an inference endpoint with FastAPI so other tools can query classification results in real time.",
-    date: "2024-02",
-    tags: ["Python", "PyTorch", "GNU Radio", "FastAPI", "ONNX", "Signal Processing"],
-    image: "/projects/signal-classifier.png",
-    github: "https://github.com",
-    demo: "https://example.com",
+      "Designed and built a small electromagnetic car for AP Physics C in high school. The car used two AA batteries wired in a parallel circuit to power both a set of drive wheels and a homemade electromagnet at the same time. The electromagnet was built by wrapping copper wire around a bolt to create a coil that could generate a magnetic field strong enough to pick up metal objects. The goal was to drive the car to a set of paper clips and pick up all 10 of them.",
+    date: "2023-05",
+    tags: ["Electromagnetics", "Circuit Design", "Parallel Circuit", "Physics", "AP Physics C"],
+    image: "/projects/electromagnetic-car.png",
     featured: true,
-    category: "ai",
+    category: "hardware",
     problem:
-      "Manual modulation identification in lab RF captures was slow and inconsistent across team members.",
+      "The main challenge was figuring out how to power two separate systems, the motors and the electromagnet, from the same low-voltage battery source without one system pulling too much current and weakening the other. A series circuit would have split the voltage and left both systems underpowered, so the wiring setup needed to be thought through carefully.",
     process:
-      "Generated a balanced 50k-sample dataset across 4 modulation classes at SNR levels from -10 to 20 dB. Designed a 4-layer 1D CNN with batch normalization, trained for 30 epochs with Adam and a cosine LR schedule.",
+      "Started by planning out the circuit on paper before building anything. Chose a parallel configuration so both the drive motors and the electromagnet would each receive the full 1.5 volts from the batteries rather than sharing it. The AP Physics C coursework on electromagnetism and Ampere's Law directly informed the decision to maximize the number of wire turns on the bolt, since more turns means a stronger magnetic field.",
     challenges:
-      "Class imbalance at low SNR caused the model to default to AM. Addressed with class-weighted loss and data augmentation via random phase rotations.",
+      "Getting the electromagnet strong enough to reliably lift paper clips took several winding attempts. Too few turns and the magnet was too weak. The parallel circuit also needed to be wired cleanly to avoid shorts, which required careful attention during assembly. Balancing the car's weight distribution so it could drive straight while carrying the electromagnet on the front also took some adjustment.",
     results:
-      "Achieved 94.2% accuracy at SNR ≥ 0 dB and 81% at -5 dB. Inference latency via the FastAPI endpoint averaged 8 ms per 1024-sample frame.",
+      "The car successfully picked up all 10 paper clips in the final test. The parallel circuit kept both systems running at full power throughout the run, and the hand-wound electromagnet held all 10 clips without dropping any.",
     lessons:
-      "SNR-stratified evaluation is essential — aggregate accuracy hides poor low-SNR performance. ONNX export revealed a subtle shape mismatch in the batch dimension that was invisible during PyTorch training.",
+      "This project brought a lot of the AP Physics C curriculum to life in a hands-on way. Concepts like magnetic flux, current loops, and circuit analysis stopped being just formulas and became real design decisions with visible results. Planning the circuit layout before starting the physical build also saved a lot of time and prevented wiring mistakes during assembly.",
   },
   {
     title: "Wireless Sensor Network PCB",
