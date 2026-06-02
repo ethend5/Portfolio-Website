@@ -2,28 +2,27 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
   {
-    title: "Smart HVAC Controller",
-    slug: "smart-hvac-controller",
+    title: "ChainPilot",
+    slug: "chainpilot",
     description:
-      "An embedded controller that dynamically adjusts HVAC setpoints based on occupancy sensing and thermal modeling.",
+      "A closed-loop testing framework for enterprise AI agents built in 24 hours at the Hack-a-Claw NVIDIA Hackathon at UCSC, pairing a live supply chain simulation with a multi-agent pipeline powered by NVIDIA Nemotron.",
     longDescription:
-      "Designed and built a low-power embedded system using an STM32 microcontroller to replace a legacy thermostat. The system reads occupancy via a PIR sensor, ambient temperature and humidity via an SHT31, and adjusts a relay-driven HVAC unit using a PID control loop tuned with MATLAB. Data is logged over UART to a Raspberry Pi host for analysis.",
-    date: "2024-05",
-    tags: ["STM32", "C", "MATLAB", "PID Control", "SHT31", "FreeRTOS"],
-    image: "/projects/hvac-controller.png",
-    github: "https://github.com",
+      "Designed and built ChainPilot, a closed-loop testing framework for enterprise AI agents, in 24 hours for the Hack-a-Claw NVIDIA Hackathon at UCSC. The system pairs a live supply chain simulation with a multi-agent pipeline powered by NVIDIA Nemotron and orchestrated via OpenClaw. A proposer agent, a critic agent, and an executor agent work together against a real backend with constrained APIs. Every decision gets evaluated on measurable downstream KPIs including service level, cost, emissions, and profit.",
+    date: "2026-05",
+    tags: ["NVIDIA Nemotron", "Multi-Agent AI", "Python", "OpenClaw", "Supply Chain", "Agentic AI"],
+    image: "/projects/chainpilot.png",
     featured: true,
-    category: "embedded",
+    category: "ai",
     problem:
-      "Legacy thermostats in the lab caused 20–30 min overshoot cycles because they only used bang-bang control with no occupancy awareness.",
+      "Most AI agent frameworks only ask whether an agent completed a task. In enterprise environments, that is not enough. An agent might call the right API but still make a decision that makes the overall system worse. Existing evaluation tools focus on reasoning and tool use, but none of them measure what actually happens after the agent acts.",
     process:
-      "Modeled the room thermal dynamics in MATLAB/Simulink, tuned PID gains offline, then implemented the controller in C on FreeRTOS. Designed a custom shield PCB to interface the relay driver and sensor breakouts.",
+      "Started by reading research on agentic AI topics like ReAct, Reflexion, and multi-agent critique to find the gap between task completion and decision quality. From there, designed a system where three specialized agents handle proposal, critique and revision, and constrained execution separately. Built the supply chain simulation with KPIs that intentionally conflict with each other, so agents have to reason through real tradeoffs instead of just solving a static prompt.",
     challenges:
-      "Noise on the ADC lines from the relay switching required careful decoupling and a software median filter. FreeRTOS task priorities needed several iterations to prevent the PID task from starving the UART logger.",
+      "Keeping multi-agent state consistent across all three agent turns was tricky within a 24-hour build window. Making sure agents could not silently change simulation state required careful constraint enforcement at the API layer, so all execution had to flow through validated backend calls. Getting the real-time KPI comparison working on the dashboard, so users could see before and after impact clearly, also took several rounds of iteration under time pressure.",
     results:
-      "Reduced temperature overshoot from ±3°C to ±0.5°C. Energy logging showed a 14% reduction in compressor run-time compared to the baseline thermostat.",
+      "Delivered a fully deployed, working agent system within the 24-hour limit. The demo walked through a concrete supply chain scenario where Chicago had surplus inventory and the West Coast distribution center was at risk of stockout. The full propose, critique, and execute loop ran live, and the dashboard updated in real time showing measurable KPI changes after each agent decision.",
     lessons:
-      "Proper hardware–software co-design matters early — adding the PCB ground plane revision late cost a week. MATLAB Simulink is invaluable for de-risking control logic before flashing firmware.",
+      "Separating the simulator from the optimizer early on was the right call. It kept the agents honest and made the evaluation meaningful rather than circular. Defining the execution constraint model before writing agent logic also helped avoid a whole category of hard-to-debug bugs where agents were silently mutating state. Running a critic agent on top of the proposer noticeably improved decision quality, which was a good real-world validation of the core idea behind the project.",
   },
   {
     title: "ML-Based Signal Classifier",
