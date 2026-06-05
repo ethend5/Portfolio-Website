@@ -25,6 +25,31 @@ export const projects: Project[] = [
       "Separating the simulator from the optimizer early on was the right call. It kept the agents honest and made the evaluation meaningful rather than circular. Defining the execution constraint model before writing agent logic also helped avoid a whole category of hard-to-debug bugs where agents were silently mutating state. Running a critic agent on top of the proposer noticeably improved decision quality, which was a good real-world validation of the core idea behind the project.",
   },
   {
+    title: "Toaster Oven FSM",
+    slug: "toaster-oven-fsm",
+    description:
+      "A simulated toaster oven controller written in embedded C for a microcontroller with an OLED display, 8 LEDs, two buttons, and a potentiometer — logic built entirely around a software finite state machine.",
+    longDescription:
+      "Designed and programmed a simulated toaster oven controller in C for an embedded systems course at UC Santa Cruz. The project ran on a microcontroller connected to a physical OLED screen, 8 LEDs, two buttons, and a potentiometer. The oven had three cooking modes: bake, toast, and broil, each with different heating element behavior and configurable settings. All of the logic was built around a software finite state machine written inside a single switch statement in C.",
+    date: "2026-05",
+    tags: ["Embedded C", "FSM", "Microcontroller", "OLED", "Embedded Systems", "State Machine", "C"],
+    image: "/projects/toaster-oven-fsm.png",
+    demo: "https://youtube.com/shorts/4BcS9qXNCK8?feature=share",
+    demoLabel: "Watch Video",
+    featured: true,
+    category: "embedded",
+    problem:
+      "The main challenge was handling multiple things happening at once: button presses, knob adjustments, and a countdown timer all needed to work together without the system freezing or missing inputs. A simple polling loop would have been too slow and messy to manage. The system needed to respond instantly to user input while also tracking time, updating the display, and keeping several state variables in sync.",
+    process:
+      "Before writing any code, spent a lot of time tracing through the FSM diagram from the lab manual, following every state transition and condition by hand. The four states were SETUP, SELECTOR_CHANGE_PENDING, COOKING, and RESET_PENDING. Development was done one transition at a time, starting with getting the OLED display working with placeholder data so there was always something visible to check against. From there, the struct holding all oven data was built out, and each new state was added and tested before moving on to the next one.",
+    challenges:
+      "Long press detection was one of the trickier parts. Since the main loop could not be blocked waiting for a button release, a free-running counter was used instead. A hardware timer fires at 5 Hz and increments a module-level variable, and the elapsed time between two events is just the difference between the counter values at each moment. This works correctly even when the counter rolls over because of how two's complement integer subtraction works. Another challenge was the LED progress bar, which needed to show cook time remaining in eighths without using any floating point math. Getting the multiply-before-divide order right was important to avoid losing precision from integer truncation. Keeping everything event-driven also took discipline since interrupts were only allowed to set flags, with all actual logic handled back in the state machine.",
+    results:
+      "The finished program cycled through all three cooking modes correctly, counted down time at the right rate, and updated the OLED and LEDs only when something actually changed. Both short and long button presses were detected reliably, and the oven could never get stuck in a bad state since every possible input had a defined response in every state.",
+    lessons:
+      "This project showed how useful state machines are for organizing complicated behavior. What looked like a confusing mess of timing conditions and input modes became a lot clearer once everything was tied to specific states and transitions. The free-running counter was also a useful technique that would apply to a lot of other embedded projects. Writing the display function first and using it to check internal state throughout development turned out to be much faster than stepping through code with a debugger.",
+  },
+  {
     title: "Electromagnetic Car",
     slug: "electromagnetic-car",
     description:
