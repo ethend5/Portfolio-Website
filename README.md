@@ -1,4 +1,4 @@
-# Ethen Dhanaraj — Portfolio
+# Ethen Dhanaraj - Portfolio
 
 Personal portfolio site for Ethen Dhanaraj, EE student at UC Santa Cruz, built with Next.js 16, TypeScript, Tailwind CSS v4, and Framer Motion.
 
