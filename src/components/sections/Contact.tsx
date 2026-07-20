@@ -4,42 +4,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Send } from "lucide-react";
 
-/*
- * ─── How to wire up email sending with Resend ──────────────────────────────
- *
- * 1. Install Resend:
- *      npm install resend
- *
- * 2. Create src/app/api/contact/route.ts:
- *
- *      import { Resend } from "resend";
- *      import { NextResponse } from "next/server";
- *
- *      const resend = new Resend(process.env.RESEND_API_KEY);
- *
- *      export async function POST(req: Request) {
- *        const { name, email, subject, message } = await req.json();
- *        const { error } = await resend.emails.send({
- *          from:    "Portfolio Contact <onboarding@resend.dev>",
- *          to:      "ethen@example.com",
- *          subject: `[Portfolio] ${subject}`,
- *          html:    `<p><strong>${name}</strong> (${email}) wrote:</p><p>${message}</p>`,
- *        });
- *        if (error) return NextResponse.json({ error }, { status: 500 });
- *        return NextResponse.json({ success: true });
- *      }
- *
- * 3. Add to .env.local:
- *      RESEND_API_KEY=re_xxxxxxxxxxxx
- *
- * 4. Update handleSubmit below to use:
- *      const res = await fetch("/api/contact", {
- *        method: "POST",
- *        headers: { "Content-Type": "application/json" },
- *        body: JSON.stringify(form),
- *      });
- *      if (!res.ok) throw new Error("Send failed");
- */
 
 // ─── Brand SVGs ───────────────────────────────────────────────────────────────
 
@@ -115,6 +79,7 @@ const INPUT_CLASS =
 export default function Contact() {
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState<string>("");
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -125,11 +90,18 @@ export default function Contact() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("loading");
+    setErrorMsg("");
     try {
-      // Simulated delay — replace with fetch("/api/contact", ...) once Resend is configured
-      await new Promise((r) => setTimeout(r, 1200));
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "Send failed");
       setStatus("success");
-    } catch {
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "Unknown error");
       setStatus("error");
     }
   }
@@ -255,7 +227,7 @@ export default function Contact() {
 
                 {status === "error" && (
                   <p className="text-sm text-red-400">
-                    Something went wrong. Please try again or email me directly.
+                    {errorMsg || "Something went wrong. Please try again or email me directly."}
                   </p>
                 )}
 

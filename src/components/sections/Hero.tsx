@@ -285,9 +285,9 @@ export default function Hero() {
               />
 
               <div
-                className="relative flex h-64 w-64 items-center justify-center overflow-hidden
+                className="relative flex h-80 w-80 items-center justify-center overflow-hidden
                            rounded-full border-2 border-primary-600/40 bg-background-800
-                           sm:h-72 sm:w-72 md:h-80 md:w-80"
+                           sm:h-96 sm:w-96 md:h-104 md:w-104"
               >
                 <Image
                   src="/headshot.jpg"
