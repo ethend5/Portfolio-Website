@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageTransition from "@/components/layout/PageTransition";
 
 // ─── Font optimization (next/font — zero layout shift, self-hosted) ───────────
 
@@ -96,7 +97,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#0a0a0f] text-white">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
       </body>
     </html>

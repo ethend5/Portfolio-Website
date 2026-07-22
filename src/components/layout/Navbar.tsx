@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -50,7 +51,7 @@ function useActiveSection(ids: string[]) {
               bestId = key;
             }
           });
-          if (bestId) setActive(bestId);
+          setActive(bestId);
         },
         { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1.0], rootMargin: "-10% 0px -10% 0px" }
       );
@@ -65,21 +66,19 @@ function useActiveSection(ids: string[]) {
   return active;
 }
 
-function smoothScrollTo(id: string) {
+function scrollToSection(id: string) {
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (el) el.scrollIntoView({ behavior: "instant" as ScrollBehavior, block: "start" });
 }
 
 // ─── Desktop nav link ────────────────────────────────────────────────────────
 
 function NavLink({
   label,
-  href,
   isActive,
   onClick,
 }: {
   label: string;
-  href: string;
   isActive: boolean;
   onClick: () => void;
 }) {
@@ -122,13 +121,11 @@ function NavLink({
 
 function MobileLink({
   label,
-  href,
   index,
   isActive,
   onClick,
 }: {
   label: string;
-  href: string;
   index: number;
   isActive: boolean;
   onClick: () => void;
@@ -159,6 +156,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const scrolled = useScrolled();
   const active = useActiveSection(SECTION_IDS);
+  const pathname = usePathname();
 
   // Prevent body scroll while mobile menu is open
   useEffect(() => {
@@ -166,9 +164,23 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
+  // After navigating from another page (e.g. /resume → /#projects), Next.js
+  // resets scroll during hydration. Re-scroll to the hash once effects run.
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    const el = document.getElementById(hash);
+    if (el) el.scrollIntoView({ behavior: "instant" as ScrollBehavior, block: "start" });
+  }, [pathname]);
+
   function handleNavClick(id: string) {
-    smoothScrollTo(id);
     setMobileOpen(false);
+    if (pathname !== "/") {
+      window.location.href = "/#" + id;
+    } else {
+      scrollToSection(id);
+    }
   }
 
   return (
@@ -192,6 +204,7 @@ export default function Navbar() {
             href="/"
             className="flex items-center gap-3 group"
             aria-label="Go to home"
+            onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
           >
             {/* ED monogram box */}
             <span className="flex items-center justify-center w-8 h-8 rounded-md bg-primary-500/15 border border-primary-500/30 text-[#38bdf8] text-sm font-bold font-mono group-hover:bg-primary-500/25 group-hover:border-primary-500/50 transition-all duration-200">
@@ -209,7 +222,6 @@ export default function Navbar() {
                 <NavLink
                   key={link.href}
                   label={link.label}
-                  href={link.href}
                   isActive={active === link.href.slice(1)}
                   onClick={() => handleNavClick(link.href.slice(1))}
                 />
@@ -307,7 +319,6 @@ export default function Navbar() {
                     <MobileLink
                       key={link.href}
                       label={link.label}
-                      href={link.href}
                       index={i}
                       isActive={active === link.href.slice(1)}
                       onClick={() => handleNavClick(link.href.slice(1))}

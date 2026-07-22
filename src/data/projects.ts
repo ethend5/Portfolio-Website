@@ -10,7 +10,7 @@ export const projects: Project[] = [
       "Designed and built ChainPilot, a closed-loop testing framework for enterprise AI agents, in 24 hours for the Hack-a-Claw NVIDIA Hackathon at UCSC. The system pairs a live supply chain simulation with a multi-agent pipeline powered by NVIDIA Nemotron and orchestrated via OpenClaw. A proposer agent, a critic agent, and an executor agent work together against a real backend with constrained APIs. Every decision gets evaluated on measurable downstream KPIs including service level, cost, emissions, and profit.",
     date: "2026-05",
     tags: ["NVIDIA Nemotron", "Multi-Agent AI", "Python", "OpenClaw", "Supply Chain", "Agentic AI"],
-    image: "/projects/chainpilot.png",
+    image: "",
     featured: true,
     category: "ai",
     problem:

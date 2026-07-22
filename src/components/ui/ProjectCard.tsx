@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Project } from "@/types";
 
@@ -80,28 +81,38 @@ export default function ProjectCard({ project, index = 0 }: Props) {
           {/* ── Image / placeholder area ─────────────────────────────── */}
           <div className={`relative h-44 bg-gradient-to-br ${gradient} overflow-hidden`}>
 
-            {/*
-             * When you have a real image, replace this block with:
-             * <Image src={project.image} alt={project.title} fill className="object-cover" />
-             */}
+            {/* Real image — place file at public/projects/<slug>.png (or .jpg) */}
+            {project.image && (
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+            )}
 
-            {/* Decorative grid lines */}
-            <div
-              aria-hidden
-              className="absolute inset-0 opacity-10"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)",
-                backgroundSize: "24px 24px",
-              }}
-            />
+            {/* Decorative grid lines (visible when no image) */}
+            {!project.image && (
+              <div
+                aria-hidden
+                className="absolute inset-0 opacity-10"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)",
+                  backgroundSize: "24px 24px",
+                }}
+              />
+            )}
 
-            {/* Category label watermark */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className={`text-5xl font-black font-mono tracking-tighter opacity-10 ${accent}`}>
-                {label}
-              </span>
-            </div>
+            {/* Category label watermark (visible when no image) */}
+            {!project.image && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className={`text-5xl font-black font-mono tracking-tighter opacity-10 ${accent}`}>
+                  {label}
+                </span>
+              </div>
+            )}
 
             {/* Category dot */}
             <div className={`absolute top-3 right-3 h-2 w-2 rounded-full ${dot}`} aria-hidden />

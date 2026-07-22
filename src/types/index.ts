@@ -34,7 +34,7 @@ export interface Experience {
 export interface Skill {
   name: string;
   category: 'programming' | 'frontend' | 'backend' | 'cad' | 'tools';
-  icon: string;
+  icon?: string;
   description: string;
   proficiency: 1 | 2 | 3 | 4 | 5;
 }

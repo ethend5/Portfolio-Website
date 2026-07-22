@@ -1,12 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Skill } from "@/types";
-
-// TODO: Replace the initials placeholder with react-icons/si brand icons.
-// Install: npm install react-icons
-// Usage: import { SiJavascript } from "react-icons/si"
-// Then swap the <span> initials for <SiJavascript className="text-xl" />
 
 type CategoryColors = {
   iconBg: string;
@@ -89,15 +85,24 @@ export default function SkillCard({ skill, index }: Props) {
                  hover:border-[#0284c7]/50 hover:shadow-[0_0_20px_rgba(14,165,233,0.07)]
                  transition-colors duration-200"
     >
-      {/* Icon placeholder */}
+      {/* Icon — image if icon path set, otherwise initials */}
       <div
-        className={`flex h-10 w-10 items-center justify-center rounded-lg border
+        className={`flex h-10 w-10 items-center justify-center rounded-lg border overflow-hidden
                     ${c.iconBg} ${c.iconBorder}`}
       >
-        {/* Replace with <Si*> icon from react-icons/si */}
-        <span className={`font-mono text-sm font-bold ${c.iconText}`}>
-          {getInitials(skill.name)}
-        </span>
+        {skill.icon ? (
+          <Image
+            src={skill.icon}
+            alt={skill.name}
+            width={28}
+            height={28}
+            className="object-contain"
+          />
+        ) : (
+          <span className={`font-mono text-sm font-bold ${c.iconText}`}>
+            {getInitials(skill.name)}
+          </span>
+        )}
       </div>
 
       {/* Name + category badge */}
