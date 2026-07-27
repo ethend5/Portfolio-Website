@@ -5,9 +5,7 @@ const TO_EMAIL = "ethendhanaraj@gmail.com";
 
 export async function POST(req: Request) {
   const apiKey = process.env.RESEND_API_KEY;
-  console.log("RESEND keys in env:", Object.keys(process.env).filter(k => k.startsWith("RESEND")));
   if (!apiKey) {
-    console.error("RESEND_API_KEY is not set");
     return NextResponse.json({ error: "RESEND_API_KEY is not configured." }, { status: 500 });
   }
 
