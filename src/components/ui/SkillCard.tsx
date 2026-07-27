@@ -96,7 +96,7 @@ export default function SkillCard({ skill, index }: Props) {
             alt={skill.name}
             width={28}
             height={28}
-            className="object-contain"
+            style={{ width: 28, height: 28, objectFit: "contain" }}
           />
         ) : (
           <span className={`font-mono text-sm font-bold ${c.iconText}`}>

@@ -293,6 +293,7 @@ export default function Hero() {
                   src="/headshot.jpg"
                   alt="Ethen Dhanaraj"
                   fill
+                  sizes="(max-width: 640px) 320px, (max-width: 768px) 384px, 416px"
                   className="object-cover object-top"
                   priority
                 />
